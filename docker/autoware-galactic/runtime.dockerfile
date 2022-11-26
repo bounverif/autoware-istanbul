@@ -20,7 +20,7 @@ USER autoware
 WORKDIR /home/autoware
 
 RUN python3 -m pip install --user ansible
-ENV PATH=$HOME/.local/bin:$PATH
+ENV PATH=/home/autoware/.local/bin:$PATH
 
 RUN ansible-galaxy collection install git+https://github.com/boundrivesim/autoware-istanbul.git#/ansible/,main 
 RUN ansible-playbook bouncmpe.autoware.runtime
