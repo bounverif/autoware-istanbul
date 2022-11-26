@@ -1,0 +1,7 @@
+- name: Install dependencies for Autoware runtime
+  become: true
+  ansible.builtin.apt:
+    name:
+      - build-essentials
+      - cmake
+    update_cache: true

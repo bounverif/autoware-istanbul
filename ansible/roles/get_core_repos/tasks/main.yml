@@ -1,0 +1,29 @@
+- name: core/autoware_msgs
+  ansible.builtin.git:
+    repo: https://github.com/autowarefoundation/autoware_msgs.git
+    dest: "{{ autoware_src }}/core/autoware_msgs"
+    version: main
+
+- name: core/autoware_adapi_msgs
+  ansible.builtin.git:
+    repo: https://github.com/autowarefoundation/autoware_adapi_msgs.git
+    dest: "{{ autoware_src }}/core/autoware_adapi_msgs"
+    version: main
+
+- name: core/autoware_common
+  ansible.builtin.git:
+    repo: https://github.com/autowarefoundation/autoware_common.git
+    dest: "{{ autoware_src }}/core/autoware_common"
+    version: main
+     
+- name: core/autoware.core
+  ansible.builtin.git:
+    repo: https://github.com/autowarefoundation/autoware.core.git
+    dest: "{{ autoware_src }}/core/autoware.core"
+    version: main
+
+- name: core/external/autoware_auto_msgs
+  ansible.builtin.git:
+    repo: https://github.com/tier4/autoware_auto_msgs.git
+    dest: "{{ autoware_src }}/core/external/autoware_auto_msgs"
+    version: tier4/main

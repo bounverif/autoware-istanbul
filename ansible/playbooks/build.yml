@@ -1,0 +1,18 @@
+
+- name: Build Autoware and dependencies
+  hosts: localhost
+  connection: local
+  vars:
+    - ros_distro: galactic
+    - ros_distro_type: ros-base
+    - autoware_version: main
+    - autoware_ws: /tmp/autoware
+    - autoware_src: "{{ autoware_ws }}/src"
+    - autoware_install_dir: "/opt/autoware/{{ ros_distro }}"
+
+  roles:
+    - role: bouncmpe.autoware.get_build_deps
+    - role: bouncmpe.autoware.get_repository
+    - role: bouncmpe.autoware.get_build_deps_vcstool
+    - role: bouncmpe.autoware.get_build_deps_rosdep
+    - role: bouncmpe.autoware.build_colcon

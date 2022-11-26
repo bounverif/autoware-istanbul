@@ -1,0 +1,122 @@
+- name: Install geographiclib-tools
+  become: true
+  ansible.builtin.apt:
+    name: geographiclib-tools
+    state: latest
+    update_cache: true
+
+- name: Install egm2008-1
+  become: true
+  ansible.builtin.command:
+    cmd: geographiclib-get-geoids egm2008-1
+    creates: /usr/share/GeographicLib/geoids/egm2008-1.pgm
+
+- name: universe/autoware.universe
+  ansible.builtin.git:
+    repo: https://github.com/autowarefoundation/autoware.universe.git
+    dest: "{{ autoware_src }}/universe/autoware.universe"
+    version: main
+    depth: 1
+    single_branch: true
+
+- name: universe/external/tier4_ad_api_adaptor
+  ansible.builtin.git:
+    repo: https://github.com/tier4/tier4_ad_api_adaptor.git
+    dest: "{{ autoware_src }}/universe/external/tier4_ad_api_adaptor"
+    version: tier4/universe
+     
+- name: universe/external/tier4_autoware_msgs
+  ansible.builtin.git:
+    repo: https://github.com/tier4/tier4_autoware_msgs.git
+    dest: "{{ autoware_src }}/universe/external/tier4_autoware_msgs"
+    version: tier4/universe
+
+- name: universe/external/grid_map
+  ansible.builtin.git:
+    repo: https://github.com/ANYbotics/grid_map.git
+    dest: "{{ autoware_src }}/universe/external/grid_map"
+    version: ba2f9cb6e62f7ee9c5bac7401391a211e442e459
+
+- name: universe/external/morai_msgs
+  ansible.builtin.git:
+    repo: https://github.com/MORAI-Autonomous/MORAI-ROS2_morai_msgs.git
+    dest: "{{ autoware_src }}/universe/external/morai_msgs"
+    version: main
+
+- name: universe/external/muSSP
+  ansible.builtin.git:
+    repo: https://github.com/tier4/muSSP.git
+    dest: "{{ autoware_src }}/universe/external/muSSP"
+    version: tier4/main
+
+- name: universe/external/ndt_omp
+  ansible.builtin.git:
+    repo: https://github.com/tier4/ndt_omp.git
+    dest: "{{ autoware_src }}/universe/external/ndt_omp"
+    version: tier4/main
+
+- name: universe/external/pointcloud_to_laserscan
+  ansible.builtin.git:
+    repo: https://github.com/tier4/pointcloud_to_laserscan.git
+    dest: "{{ autoware_src }}/universe/external/pointcloud_to_laserscan"
+    version: tier4/main
+
+- name: launcher/autoware_launch
+  ansible.builtin.git:
+    repo: https://github.com/autowarefoundation/autoware_launch.git
+    dest: "{{ autoware_src }}/launcher/autoware_launch"
+    version: main
+
+- name: sensor_component/external/sensor_component_description
+  ansible.builtin.git:
+    repo: https://github.com/tier4/sensor_component_description.git
+    dest: "{{ autoware_src }}/sensor_component/external/sensor_component_description"
+    version: main
+
+- name: sensor_component/external/tamagawa_imu_driver
+  ansible.builtin.git:
+    repo: https://github.com/tier4/tamagawa_imu_driver.git
+    dest: "{{ autoware_src }}/sensor_component/external/tamagawa_imu_driver"
+    version: ros2
+
+- name: sensor_component/external/velodyne_vls
+  ansible.builtin.git:
+    repo: https://github.com/tier4/velodyne_vls.git
+    dest: "{{ autoware_src }}/sensor_component/external/velodyne_vls"
+    version: tier4/universe
+
+- name: sensor_kit/sample_sensor_kit_launch
+  ansible.builtin.git:
+    repo: https://github.com/autowarefoundation/sample_sensor_kit_launch.git
+    dest: "{{ autoware_src }}/sensor_kit/sample_sensor_kit_launch"
+    version: main
+
+- name: sensor_kit/external/awsim_sensor_kit_launch
+  ansible.builtin.git:
+    repo: https://github.com/RobotecAI/awsim_sensor_kit_launch.git
+    dest: "{{ autoware_src }}/sensor_kit/sample_sensor_kit_launch"
+    version: main
+
+- name: vehicle/sample_vehicle_launch
+  ansible.builtin.git:
+    repo: https://github.com/autowarefoundation/sample_vehicle_launch.git
+    dest: "{{ autoware_src }}/vehicle/sample_vehicle_launch"
+    version: main
+
+- name: vehicle/external/pacmod_interface
+  ansible.builtin.git:
+    repo: https://github.com/tier4/pacmod_interface.git
+    dest: "{{ autoware_src }}/vehicle/external/pacmod_interface"
+    version: main
+
+- name: vehicle/external/pacmod3_msgs
+  ansible.builtin.git:
+    repo: https://github.com/astuff/pacmod3_msgs.git
+    dest: "{{ autoware_src }}/vehicle/external/pacmod3_msgs"
+    version: 1.0.0
+
+- name: param/autoware_individual_params
+  ansible.builtin.git:
+    repo: https://github.com/autowarefoundation/autoware_individual_params.git
+    dest: "{{ autoware_src }}/param/autoware_individual_params"
+    version: main

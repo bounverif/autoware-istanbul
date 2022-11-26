@@ -1,0 +1,8 @@
+namespace: bouncmpe
+name: autoware
+description: Ansible scripts for Autoware Istanbul CoE
+repository: github.com/boundrivesim/autoware-istanbul
+version: 0.2.0
+readme: README.md
+authors:
+  - Dogan Ulus <dogan.ulus@boun.edu.tr>

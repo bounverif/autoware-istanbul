@@ -1,0 +1,5 @@
+# Copyright 2021 The Autoware Contributors
+# SPDX-License-Identifier: Apache-2.0
+
+ros_distro: galactic
+ros_distro_type: ros-base

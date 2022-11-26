@@ -1,0 +1,14 @@
+---
+- name: Prepare Autoware devel environment
+  hosts: localhost
+  connection: local
+  vars:
+    - ros_distro: galactic
+    - ros_distro_type: desktop
+    - autoware_version: main
+    - autoware_ws: $HOME/autoware
+    - autoware_src: "{{ autoware_ws }}/src"
+    - autoware_install_dir: "{{ autoware_ws }}/install"
+
+  roles:
+    - role: bouncmpe.autoware.get_build_deps

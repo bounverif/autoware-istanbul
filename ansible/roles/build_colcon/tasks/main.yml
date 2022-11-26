@@ -1,0 +1,17 @@
+- name: Install dependencies for setting up apt source
+  become: true
+  ansible.builtin.apt:
+    name:
+      - python3-colcon-common-extensions
+      - python3-colcon-mixin
+    update_cache: true
+
+- name: Build sources
+  ansible.builtin.shell: >-
+    export GeographicLib_INCLUDE_DIR=/usr/include &&
+    source /opt/ros/{{ ros_distro }}/setup.bash && 
+    colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release
+  args:
+    executable: /bin/bash
+    chdir: "{{ autoware_ws }}"
+  changed_when: false

@@ -1,0 +1,26 @@
+- name: Install dependencies for setting up apt source
+  become: true
+  ansible.builtin.apt:
+    name:
+      - python3-rosdep 
+    update_cache: true
+
+- name: sudo rosdep init
+  become: true
+  ansible.builtin.command:
+    cmd: rosdep init
+    creates: /etc/ros/rosdep/sources.list.d/20-default.list
+   
+- name: rosdep update
+  ansible.builtin.shell: rosdep update
+  args:
+    chdir: "{{ autoware_ws }}"
+
+- name: rosdep install
+  become: true
+  ansible.builtin.shell: >-
+    source /opt/ros/{{ ros_distro }}/setup.bash &&
+    rosdep install -y --ignore-src --from-paths src
+  args:
+    executable: /bin/bash
+    chdir: "{{ autoware_ws }}"

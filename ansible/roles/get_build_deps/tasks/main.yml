@@ -1,0 +1,25 @@
+- name: Install system dependencies for building Autoware
+  become: true
+  ansible.builtin.apt:
+    name:
+      - build-essential
+      - cmake
+      - ccache
+      - libboost-all-dev
+      - libpcl-dev
+      - libcgal-dev
+      - libopencv-dev
+      - libfmt-dev
+      - libcrypto++-dev
+      - libcpprest-dev
+      - libpugixml-dev
+      - libyaml-cpp-dev
+      - librange-v3-dev
+      
+    update_cache: true
+
+- include_role:
+    name: bouncmpe.autoware.get_build_deps_rmw_implementation
+
+- include_role:
+    name: bouncmpe.autoware.get_build_deps_pacmod

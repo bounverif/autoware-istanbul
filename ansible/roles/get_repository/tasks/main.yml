@@ -1,0 +1,8 @@
+- name: autowarefoundation/autoware
+  ansible.builtin.git:
+    repo: https://github.com/autowarefoundation/autoware.git
+    dest: "{{ autoware_ws }}"
+    version: "{{ autoware_version }}"
+    depth: 1
+    single_branch: true
+

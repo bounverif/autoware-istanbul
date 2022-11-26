@@ -1,0 +1,18 @@
+- name: Install dependencies for setting up apt source
+  become: true
+  ansible.builtin.apt:
+    name:
+      - python3-vcstool
+    update_cache: true
+
+- name: Create Autoware source directory if it does not exist
+  ansible.builtin.file:
+    path: "{{ autoware_src }}"
+    state: directory
+    mode: '0755'
+
+- name: vcs import autoware repos
+  ansible.builtin.shell: vcs import {{ autoware_src }} < "{{ autoware_ws }}/autoware.repos"
+  args:
+    executable: /bin/bash
+    chdir: "{{ autoware_ws }}"
