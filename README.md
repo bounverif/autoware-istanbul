@@ -23,5 +23,6 @@ As the Autoware Istanbul CoE at Boğaziçi University, we will especially work t
 - Develop methods and tools to specify abstract test specification for complex autonomous systems
 - Develop methods and tools to verify abstract test specifications in simulation and scenario based testing of AVs
 - Help demonstrate the safety of Autoware by applying advanced testing and verification techniques
+- Promote and help the adoption of cloud-native development practices for automotive software
 
 and follow the general mission of Autoware CoEs to advance the state of the AV education.
