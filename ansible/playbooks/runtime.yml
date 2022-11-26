@@ -1,0 +1,3 @@
+- name: Install Autoware runtime
+  hosts: localhost
+  connection: local

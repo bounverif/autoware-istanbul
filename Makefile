@@ -3,7 +3,7 @@ cgdevel:
 	--tag ghcr.io/bouncmpe/autoware:galactic-devel \
 	--file docker/autoware-galactic/devel.dockerfile
 
-cgruntime:
+cgruntime: cgdevel
 	DOCKER_BUILDKIT=1 docker build . \
 	--tag ghcr.io/bouncmpe/autoware:galactic-runtime \
 	--file docker/autoware-galactic/runtime.dockerfile
