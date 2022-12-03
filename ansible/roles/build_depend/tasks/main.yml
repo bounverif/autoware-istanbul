@@ -18,7 +18,7 @@
       - librange-v3-dev
 
 - include_role:
-    name: bouncmpe.autoware.depends_rmw_implementation
+    name: bouncmpe.autoware.depend_rmw_implementation
 
 - include_role:
-    name: bouncmpe.autoware.depends_pacmod
+    name: bouncmpe.autoware.depend_pacmod
