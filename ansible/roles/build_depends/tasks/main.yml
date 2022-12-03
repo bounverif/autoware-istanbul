@@ -1,6 +1,7 @@
-- name: Install system dependencies for building Autoware
+- name: Install Autoware build dependencies 
   become: true
   ansible.builtin.apt:
+    update_cache: true
     name:
       - build-essential
       - cmake
@@ -15,11 +16,9 @@
       - libpugixml-dev
       - libyaml-cpp-dev
       - librange-v3-dev
-      
-    update_cache: true
 
 - include_role:
-    name: bouncmpe.autoware.get_build_deps_rmw_implementation
+    name: bouncmpe.autoware.depends_rmw_implementation
 
 - include_role:
-    name: bouncmpe.autoware.get_build_deps_pacmod
+    name: bouncmpe.autoware.depends_pacmod
