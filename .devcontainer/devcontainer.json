@@ -1,14 +1,16 @@
 // .devcontainer/devcontainer.json
 {
-    "name": "autoware-istanbul",
-    "build": {
-        "dockerfile": "../docker/autoware-galactic/devel.dockerfile"
-    },
-    "runArgs": ["--rm"],
-    "mounts": [],
-    "remoteUser": "autoware",
-    "settings": {
-        "terminal.integrated.defaultProfile.linux": "bash"
+	"name": "autoware-istanbul",
+	"build": {
+		"dockerfile": "../docker/autoware-humble/devel.dockerfile"
+	},
+	"runArgs": [
+		"--rm"
+	],
+	"mounts": [],
+	"remoteUser": "autoware",
+	"settings": {
+		"terminal.integrated.defaultProfile.linux": "bash"
 	},
 	"customizations": {
 		"vscode": {
