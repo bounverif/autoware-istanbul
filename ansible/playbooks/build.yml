@@ -11,7 +11,7 @@
     autoware_install_dir: "/opt/autoware/{{ ros_distro }}"
 
   roles:
-    - role: bouncmpe.autoware.build_depends
+    - role: bouncmpe.autoware.build_depend
     - role: bouncmpe.autoware.get_repository
     - role: bouncmpe.autoware.get_build_deps_vcstool
     - role: bouncmpe.autoware.get_build_deps_rosdep
