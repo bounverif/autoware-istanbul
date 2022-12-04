@@ -3,6 +3,7 @@
 #
 FROM ghcr.io/bouncmpe/autoware:galactic-devel as builder
 
+COPY . /workspaces/autoware-istanbul/
 RUN ansible-playbook bouncmpe.autoware.build
 
 FROM amd64/ros:galactic-ros-base
