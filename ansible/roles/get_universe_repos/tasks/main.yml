@@ -31,12 +31,6 @@
     dest: "{{ autoware_src }}/universe/external/tier4_autoware_msgs"
     version: tier4/universe
 
-- name: universe/external/grid_map
-  ansible.builtin.git:
-    repo: https://github.com/ANYbotics/grid_map.git
-    dest: "{{ autoware_src }}/universe/external/grid_map"
-    version: ba2f9cb6e62f7ee9c5bac7401391a211e442e459
-
 - name: universe/external/morai_msgs
   ansible.builtin.git:
     repo: https://github.com/MORAI-Autonomous/MORAI-ROS2_morai_msgs.git
@@ -94,7 +88,7 @@
 - name: sensor_kit/external/awsim_sensor_kit_launch
   ansible.builtin.git:
     repo: https://github.com/RobotecAI/awsim_sensor_kit_launch.git
-    dest: "{{ autoware_src }}/sensor_kit/sample_sensor_kit_launch"
+    dest: "{{ autoware_src }}/sensor_kit/awsim_sensor_kit_launch"
     version: main
 
 - name: vehicle/sample_vehicle_launch

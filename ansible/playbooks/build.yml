@@ -13,6 +13,7 @@
   roles:
     - role: bouncmpe.autoware.build_depend
     - role: bouncmpe.autoware.get_repository
-    - role: bouncmpe.autoware.get_build_deps_vcstool
+    - role: bouncmpe.autoware.get_core_repos
+    - role: bouncmpe.autoware.get_universe_repos
     - role: bouncmpe.autoware.get_build_deps_rosdep
     - role: bouncmpe.autoware.build_colcon
