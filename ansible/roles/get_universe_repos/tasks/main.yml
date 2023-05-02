@@ -55,6 +55,24 @@
     dest: "{{ autoware_src }}/universe/external/pointcloud_to_laserscan"
     version: tier4/main
 
+- name: universe/external/eagleye
+  ansible.builtin.git:
+    repo: https://github.com/MapIV/eagleye.git
+    dest: "{{ autoware_src }}/universe/external/eagleye"
+    version: autoware-main
+
+- name: universe/external/rtklib_ros_bridge
+  ansible.builtin.git:
+    repo: https://github.com/MapIV/rtklib_ros_bridge.git
+    dest: "{{ autoware_src }}/universe/external/rtklib_ros_bridge"
+    version: ros2-v0.1.0
+
+- name: universe/external/llh_converter
+  ansible.builtin.git:
+    repo: https://github.com/MapIV/llh_converter.git
+    dest: "{{ autoware_src }}/universe/external/llh_converter"
+    version: ros2
+
 - name: launcher/autoware_launch
   ansible.builtin.git:
     repo: https://github.com/autowarefoundation/autoware_launch.git
