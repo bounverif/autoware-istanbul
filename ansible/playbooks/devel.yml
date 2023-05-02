@@ -3,7 +3,7 @@
   hosts: localhost
   connection: local
   vars:
-    ros_distro: galactic
+    ros_distro: humble
     ros_distro_type: desktop
     autoware_version: main
     autoware_ws: $HOME/autoware
