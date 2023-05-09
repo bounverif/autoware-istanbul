@@ -1,22 +1,21 @@
 // .devcontainer/devcontainer.json
 {
-	"name": "autoware-istanbul",
-	"image": "ghcr.io/bouncmpe/autoware:humble-devel",
-	"runArgs": [
-		"--rm"
-	],
-	"mounts": [],
-	"remoteUser": "autoware",
-	"settings": {
-		"terminal.integrated.defaultProfile.linux": "bash"
-	},
-	"customizations": {
-		"vscode": {
-			"extensions": [
-				"ms-azuretools.vscode-docker",
-				"redhat.ansible",
-				"esbenp.prettier-vscode"
-			]
-		}
-	}
+  "name": "autoware-istanbul",
+  "dockerFile": "./Dockerfile",
+  "runArgs": ["--rm"],
+  "mounts": [],
+  "remoteUser": "autoware",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      },
+      "extensions": [
+        "ms-azuretools.vscode-docker",
+        "redhat.ansible",
+        "esbenp.prettier-vscode"
+      ]
+    }
+  },
+  "postCreateCommand": "ansible-galaxy install -r requirements.yml --force"
 }
