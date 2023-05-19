@@ -4,16 +4,10 @@
   connection: local
   vars:
     ros_distro: humble
-    ros_distro_type: desktop
     autoware_version: main
-    autoware_ws: /tmp/autoware
+    autoware_ws: /workspaces/autoware
     autoware_src: "{{ autoware_ws }}/src"
     autoware_install_dir: "/opt/autoware/{{ ros_distro }}"
 
   roles:
-    - role: bouncmpe.autoware.build_depend
-    - role: bouncmpe.autoware.get_repository
-    - role: bouncmpe.autoware.get_core_repos
-    - role: bouncmpe.autoware.get_universe_repos
-    - role: bouncmpe.autoware.get_build_deps_rosdep
     - role: bouncmpe.autoware.build_colcon
