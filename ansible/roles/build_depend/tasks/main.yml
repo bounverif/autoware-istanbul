@@ -16,6 +16,13 @@
       - libpugixml-dev
       - libyaml-cpp-dev
       - librange-v3-dev
+      - geographiclib-tools
+
+- name: Install egm2008-1
+  become: true
+  ansible.builtin.command:
+    cmd: geographiclib-get-geoids egm2008-1
+    creates: /usr/share/GeographicLib/geoids/egm2008-1.pgmdocker
 
 - include_role:
     name: bouncmpe.autoware.depend_rmw_implementation
