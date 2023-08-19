@@ -30,6 +30,7 @@ jobs:
 
       - name: Build
         run: |
+          . /opt/ros/humble/setup.sh
           colcon build \
             --base-paths /autoware/src \
             --build-base /build \
