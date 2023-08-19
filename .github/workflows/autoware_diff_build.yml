@@ -20,17 +20,19 @@ jobs:
         with:
           repository: 'autowarefoundation/autoware'
           path: 'autoware'
+          
+      - run: mv autoware /autoware # https://github.com/actions/checkout/issues/197
 
       - name: Clone dependency packages
         run: |
-          mkdir -p autoware/src
-          vcs import --shallow autoware/src < autoware/autoware.repos
+          mkdir -p /autoware/src
+          vcs import --shallow /autoware/src < /autoware/autoware.repos
         shell: bash
 
       - name: Build
         run: |
           colcon build \
-            --base-paths autoware/src \
+            --base-paths /autoware/src \
             --build-base /build \
             --install-base /install \
             --cmake-args -DCMAKE_BUILD_TYPE=Release \
