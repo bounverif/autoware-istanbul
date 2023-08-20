@@ -34,7 +34,7 @@ jobs:
           colcon build \
             --base-paths /autoware/src \
             --build-base /autoware/build \
-            --install-base /opt/autoware/humble/
+            --install-base /opt/autoware/humble/ \
             --cmake-args \
               " -Wno-dev" \
               " --no-warn-unused-cli" \
