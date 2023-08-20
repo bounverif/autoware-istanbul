@@ -26,7 +26,7 @@ jobs:
       - name: Clone dependency packages
         run: |
           mkdir -p /autoware/src
-          vcs import --shallow /autoware/src
+          vcs import --shallow /autoware/src < /autoware/autoware.repos
         shell: bash
 
       - name: Build
