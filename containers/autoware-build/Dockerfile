@@ -3,13 +3,13 @@
 
 FROM amd64/ros:humble
 
-ENV NVIDIA_VISIBLE_DEVICES=all
-ENV NVIDIA_DRIVER_CAPABILITIES=compute,utility 
-
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install \
       git \
       wget \
+      cmake \
+      ccache \
+      ninja-build \
     && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* 
 
 # RUN echo "deb [trusted=yes] http://packages.ros.org/ros2/ubuntu jammy main" > /etc/apt/sources.list.d/ros2-latest.list
@@ -28,6 +28,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
       # libgoogle-glog-dev \
       # libgeographic-dev \
       # geographiclib-tools \
+      ros-humble-rmw-fastrtps-cpp \
       ros-humble-rmw-cyclonedds-cpp \
       ros-humble-pacmod3 \
     && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* 
@@ -67,7 +68,11 @@ RUN git clone https://github.com/autowarefoundation/autoware.git --depth 1 /auto
     && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* \
     && rm -rf /autoware 
 
-# ENV PATH="/usr/local/cuda/bin:$PATH"
-# ENV LD_LIBRARY_PATH="/usr/local/cuda/lib64:$LD_LIBRARY_PATH"
+ENV NVIDIA_VISIBLE_DEVICES=all
+ENV NVIDIA_DRIVER_CAPABILITIES=compute,utility 
+ENV PATH="/usr/local/cuda/bin:$PATH"
+ENV LD_LIBRARY_PATH="/usr/local/cuda/lib64:$LD_LIBRARY_PATH"
+ENV CMAKE_GENERATOR=Ninja
+ENV CCACHE_DIR=/ccache
 
 ## BUILD ENVIRONMENT -- END
