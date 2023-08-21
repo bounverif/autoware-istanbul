@@ -1,6 +1,8 @@
 name: Build Autoware build image
 on:
   workflow_dispatch:
+  schedule:
+    - cron: '34 15 * * 0' # 15:34 UTC every Sunday
   push:
     paths:
       - containers/autoware-build/Dockerfile
