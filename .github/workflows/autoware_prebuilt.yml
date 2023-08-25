@@ -36,8 +36,8 @@ jobs:
         with:
           context: containers/autoware-prebuilt
           build-args: |
+            --no-cache
             VERSION=${{ env.VERSION }}
+  
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
           push: true
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
