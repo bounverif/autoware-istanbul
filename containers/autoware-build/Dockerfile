@@ -1,7 +1,12 @@
 # docker build . -t ghcr.io/bounverif/autoware:build -f docker/autoware-humble/build.dockerfile
 # docker run --rm -it ghcr.io/bounverif/autoware:build
 
-FROM amd64/ros:humble
+FROM ros:humble-ros-base-jammy
+
+ARG CUDA_ARCH=x86_64
+ARG CUDA_DISTRO=ubuntu2204
+ARG CUDA_KEYRING_PACKAGE=cuda-keyring_1.1-1_all.deb
+ARG CUDA_KEYRING_FILEPATH=https://developer.download.nvidia.com/compute/cuda/repos/${CUDA_DISTRO}/${CUDA_ARCH}/${CUDA_KEYRING_PACKAGE}
 
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install \
@@ -33,8 +38,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
       ros-humble-pacmod3 \
     && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* 
 
-RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb \
-    && dpkg -i cuda-keyring_1.1-1_all.deb && rm cuda-keyring_1.1-1_all.deb
+RUN wget ${CUDA_KEYRING_FILEPATH} && dpkg -i ${CUDA_KEYRING_PACKAGE} && rm ${CUDA_KEYRING_PACKAGE}
 
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install \
