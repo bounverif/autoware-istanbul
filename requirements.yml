@@ -6,3 +6,7 @@
 collections:
   - source: ./ansible
     type: dir
+  - source: ./collections/autoware_universe
+    type: dir
+  - source: ../ansible-collection-ros
+    type: dir

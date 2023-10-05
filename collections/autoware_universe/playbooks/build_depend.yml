@@ -1,0 +1,24 @@
+---
+- name: Build autoware.universe Dependencies
+  hosts: localhost
+  connection: local
+  vars:
+    ros_distro: humble
+    ros_distro_type: desktop
+    autoware_universe_workspace: /tmp/autoware-istanbul/ros/autoware_universe
+    autoware_universe_source_dir: "{{ autoware_universe_workspace }}/src"
+    autoware_universe_build_dir: "{{ autoware_universe_workspace }}/build"
+    autoware_universe_install_dir: "/opt/bouncmpe/install/{{ ros_distro }}"
+
+    rosdep_install_dependency_types:
+      - buildtool
+      - buildtool_export
+      - build_export
+      - build
+
+  roles:
+    - role: bounverif.ros.ros2_install
+    - role: bouncmpe.autoware_universe.ros_requirements_install
+    - role: bounverif.ros.cuda_toolkit_install
+    - role: bounverif.ros.repositories
+    - role: bounverif.ros.rosdep_install
