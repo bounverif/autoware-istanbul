@@ -1,0 +1,25 @@
+pip_packages:
+  - { name: "gdown", state: latest }
+  - { name: "pre-commit", state: latest }
+  - { name: "clang", version: clang_format_version }
+apt_packages:
+  - { name: "ccache", state: latest }
+  - { name: "geographiclib-tools", state: latest }
+  - { name: "ros-{{ ros_distro }}-plotjuggler-ros", state: latest }
+  - { name: "golang", state: latest }
+  - { name: "ros-{{ ros_distro }}-{{ rmw_implementation__dash_case_rmw_implementation.stdout }}", state: latest }
+  - { name: "apt-transport-https" }
+  - { name: "python3-colcon-mixin", state: latest }
+  - { name: "python3-flake8-docstrings", state: latest }
+  - { name: "python3-pip", state: latest }
+  - { name: "python3-pytest-cov", state: latest }
+  - { name: "ros-dev-tools", state: latest }
+  - { name: "python3-flake8-blind-except", state: latest }
+  - { name: "python3-flake8-builtins", state: latest }
+  - { name: "python3-flake8-class-newline", state: latest }
+  - { name: "python3-flake8-comprehensions", state: latest }
+  - { name: "python3-flake8-deprecated", state: latest }
+  - { name: "python3-flake8-import-order", state: latest }
+  - { name: "python3-flake8-quotes", state: latest }
+  - { name: "python3-pytest-repeat", state: latest }
+  - { name: "python3-pytest-rerunfailures", state: latest }
