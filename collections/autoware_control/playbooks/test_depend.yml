@@ -1,0 +1,16 @@
+---
+- name: Test Autoware Control Dependecies
+  hosts: localhost
+  connection: local
+  vars:
+    rosdep_install_dependency_types:
+     - test
+
+  roles:
+    - role: bounverif.ros.ros2_install
+    - role: bouncmpe.autoware_control.ros_requirements_install
+    - role: bounverif.ros.cuda_toolkit_install
+    - role: bounverif.ros.repositories
+    - role: bounverif.ros.file_operations
+    - role: bounverif.ros.rosdep_install
+

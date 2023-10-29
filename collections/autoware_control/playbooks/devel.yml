@@ -1,0 +1,21 @@
+---
+- name: Create Autoware Control Developing Environment
+  hosts: localhost
+  connection: local
+  vars:
+    rosdep_install_dependency_types:
+      - buildtool
+      - exec
+      - doc
+      - buildtool_export
+      - build_export
+      - build
+      - test
+
+  roles:
+    - role: bounverif.ros.ros2_install
+    - role: bouncmpe.autoware_control.ros_requirements_install
+    - role: bounverif.ros.cuda_toolkit_install
+    - role: bounverif.ros.repositories
+    - role: bounverif.ros.file_operations
+    - role: bounverif.ros.rosdep_install

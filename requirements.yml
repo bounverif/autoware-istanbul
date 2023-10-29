@@ -8,5 +8,17 @@ collections:
     type: dir
   - source: ./collections/autoware_universe
     type: dir
+  - source: ./collections/autoware_control
+    type: dir
+  - source: ./collections/autoware_perception
+    type: dir
+  - source: ./collections/autoware_localization
+    type: dir
+  - source: ./collections/autoware_planning
+    type: dir
+  - source: ./collections/autoware_system
+    type: dir
+  - source: ./collections/autoware_vehicle
+    type: dir
   - source: ../ansible-collection-ros
     type: dir

@@ -1,0 +1,219 @@
+# General Vars
+ros_workspace: /tmp/autoware-istanbul/ros/autoware_perception
+ros_source_dir:  "{{ ros_workspace }}/src"
+ros_build_dir: "{{ ros_workspace }}/build"
+ros_install_dir: "/opt/bouncmpe/{{ ros_distro }}"
+
+# Requirement role vars
+ros_distro: humble
+ros_distro_type: desktop
+collection_name: autoware_perception
+rmw_implementation: rmw_cyclonedds_cpp
+base_image: ubuntu:22.04
+cuda_base_image: ubuntu:22.04
+prebuilt_base_image: ubuntu:22.04
+cuda_version: 11.6
+cudnn_version: 8.4.1.50-1+cuda11.6
+tensorrt_version: 8.4.2-1+cuda11.6
+clang_format_version: 16.0.0
+
+# Rosdep role
+rosdep_install_init: true
+
+repositories_download_dir: "{{ ros_source_dir }}/downloads"
+
+repositories:
+  - {
+    url: https://github.com/autowarefoundation/autoware.universe.git,
+    dest: "{{ repositories_download_dir }}/{{ collection_name }}/",
+    version: main
+  }
+  # Core
+  - {
+    url: https://github.com/autowarefoundation/autoware_msgs.git,
+    dest: "{{ repositories_download_dir }}/{{ collection_name }}/autoware_msgs",
+    version: main
+  }
+  - {
+    url: https://github.com/autowarefoundation/autoware_common.git,
+    dest: "{{ repositories_download_dir }}/{{ collection_name }}/autoware_common",
+    version: main
+  }
+  - {
+    url: https://github.com/tier4/autoware_auto_msgs.git,
+    dest: "{{ repositories_download_dir }}/{{ collection_name }}/external/autoware_auto_msgs",
+    version: tier4/main
+  }
+  # Universe
+  - {
+    url: https://github.com/tier4/tier4_autoware_msgs.git,
+    dest: "{{ repositories_download_dir }}/{{ collection_name }}/external/tier4_autoware_msgs",
+    version: tier4/universe
+  }
+  - {
+    url: https://github.com/tier4/muSSP.git,
+    dest: "{{ repositories_download_dir }}/{{ collection_name }}/external/muSSP",
+    version: tier4/main
+  }
+
+copy_list:
+  # perception
+  - {
+    src: "{{ repositories_download_dir }}/{{ collection_name }}/perception/",
+    dest: "{{ ros_source_dir }}/{{ collection_name }}/perception/"
+  }
+  # common
+  - {
+    src: "{{ repositories_download_dir }}/{{ collection_name }}/common/autoware_auto_common/",
+    dest: "{{ ros_source_dir }}/{{ collection_name }}/common/autoware_auto_common/"
+  }
+  - {
+    src: "{{ repositories_download_dir }}/{{ collection_name }}/common/autoware_auto_geometry/",
+    dest: "{{ ros_source_dir }}/{{ collection_name }}/common/autoware_auto_geometry/"
+  }
+  - {
+    src: "{{ repositories_download_dir }}/{{ collection_name }}/common/autoware_auto_tf2/",
+    dest: "{{ ros_source_dir }}/{{ collection_name }}/common/autoware_auto_tf2/"
+  }
+  - {
+    src: "{{ repositories_download_dir }}/{{ collection_name }}/common/autoware_point_types/",
+    dest: "{{ ros_source_dir }}/{{ collection_name }}/common/autoware_point_types/"
+  }
+  - {
+    src: "{{ repositories_download_dir }}/{{ collection_name }}/common/cuda_utils/",
+    dest: "{{ ros_source_dir }}/{{ collection_name }}/common/cuda_utils/"
+  }
+  - {
+    src: "{{ repositories_download_dir }}/{{ collection_name }}/common/grid_map_utils/",
+    dest: "{{ ros_source_dir }}/{{ collection_name }}/common/grid_map_utils/"
+  }
+  - {
+    src: "{{ repositories_download_dir }}/{{ collection_name }}/common/interpolation/",
+    dest: "{{ ros_source_dir }}/{{ collection_name }}/common/interpolation/"
+  }
+  - {
+    src: "{{ repositories_download_dir }}/{{ collection_name }}/common/kalman_filter/",
+    dest: "{{ ros_source_dir }}/{{ collection_name }}/common/kalman_filter/"
+  }
+  - {
+    src: "{{ repositories_download_dir }}/{{ collection_name }}/common/motion_utils/",
+    dest: "{{ ros_source_dir }}/{{ collection_name }}/common/motion_utils/"
+  }
+  - {
+    src: "{{ repositories_download_dir }}/{{ collection_name }}/common/object_recognition_utils/",
+    dest: "{{ ros_source_dir }}/{{ collection_name }}/common/object_recognition_utils/"
+  }
+  - {
+    src: "{{ repositories_download_dir }}/{{ collection_name }}/common/perception_utils/",
+    dest: "{{ ros_source_dir }}/{{ collection_name }}/common/perception_utils/"
+  }
+  - {
+    src: "{{ repositories_download_dir }}/{{ collection_name }}/common/tensorrt_common/",
+    dest: "{{ ros_source_dir }}/{{ collection_name }}/common/tensorrt_common/"
+  }
+  - {
+    src: "{{ repositories_download_dir }}/{{ collection_name }}/common/tier4_autoware_utils/",
+    dest: "{{ ros_source_dir }}/{{ collection_name }}/common/tier4_autoware_utils/"
+  }
+  - {
+    src: "{{ repositories_download_dir }}/{{ collection_name }}/common/traffic_light_utils/",
+    dest: "{{ ros_source_dir }}/{{ collection_name }}/common/traffic_light_utils/"
+  }
+  - {
+    src: "{{ repositories_download_dir }}/{{ collection_name }}/common/tvm_utility/",
+    dest: "{{ ros_source_dir }}/{{ collection_name }}/common/tvm_utility/"
+  }
+  # sensing
+  - {
+    src: "{{ repositories_download_dir }}/{{ collection_name }}/sensing/image_transport_decompressor/",
+    dest: "{{ ros_source_dir }}/{{ collection_name }}/sensing/image_transport_decompressor/"
+  }
+  - {
+    src: "{{ repositories_download_dir }}/{{ collection_name }}/sensing/pointcloud_preprocessor/",
+    dest: "{{ ros_source_dir }}/{{ collection_name }}/sensing/pointcloud_preprocessor/"
+  }
+  - {
+    src: "{{ repositories_download_dir }}/{{ collection_name }}/sensing/tier4_pcl_extensions/",
+    dest: "{{ ros_source_dir }}/{{ collection_name }}/sensing/tier4_pcl_extensions/"
+  }
+  # vehicle
+  - {
+    src: "{{ repositories_download_dir }}/{{ collection_name }}/vehicle/vehicle_info_util/",
+    dest: "{{ ros_source_dir }}/{{ collection_name }}/vehicle/vehicle_info_util/"
+  }
+  # autoware_common
+  - {
+    src: "{{ repositories_download_dir }}/{{ collection_name }}/autoware_common/autoware_cmake/",
+    dest: "{{ ros_source_dir }}/{{ collection_name }}/autoware_common/autoware_cmake/"
+  }
+  - {
+    src: "{{ repositories_download_dir }}/{{ collection_name }}/autoware_common/autoware_lint_common/",
+    dest: "{{ ros_source_dir }}/{{ collection_name }}/autoware_common/autoware_lint_common/"
+  }
+  - {
+    src: "{{ repositories_download_dir }}/{{ collection_name }}/autoware_common/autoware_utils/",
+    dest: "{{ ros_source_dir }}/{{ collection_name }}/autoware_common/autoware_utils/"
+  }
+  - {
+    src: "{{ repositories_download_dir }}/{{ collection_name }}/autoware_common/tmp/lanelet2_extension/",
+    dest: "{{ ros_source_dir }}/{{ collection_name }}/autoware_common/tmp/lanelet2_extension/"
+  }
+  # autoware_msgs
+  - {
+    src: "{{ repositories_download_dir }}/{{ collection_name }}/autoware_msgs/autoware_map_msgs/",
+    dest: "{{ ros_source_dir }}/{{ collection_name }}/autoware_msgs/autoware_map_msgs/"
+  }
+  - {
+    src: "{{ repositories_download_dir }}/{{ collection_name }}/autoware_msgs/autoware_perception_msgs/",
+    dest: "{{ ros_source_dir }}/{{ collection_name }}/autoware_msgs/autoware_perception_msgs/"
+  }
+  - {
+    src: "{{ repositories_download_dir }}/{{ collection_name }}/autoware_msgs/autoware_planning_msgs/",
+    dest: "{{ ros_source_dir }}/{{ collection_name }}/autoware_msgs/autoware_planning_msgs/"
+  }
+  # external/autoware_auto_msgs
+  - {
+    src: "{{ repositories_download_dir }}/{{ collection_name }}/external/autoware_auto_msgs/autoware_auto_geometry_msgs",
+    dest: "{{ ros_source_dir }}/{{ collection_name }}/external/autoware_auto_msgs/autoware_auto_geometry_msgs"
+  }
+  - {
+    src: "{{ repositories_download_dir }}/{{ collection_name }}/external/autoware_auto_msgs/autoware_auto_mapping_msgs",
+    dest: "{{ ros_source_dir }}/{{ collection_name }}/external/autoware_auto_msgs/autoware_auto_mapping_msgs"
+  }
+  - {
+    src: "{{ repositories_download_dir }}/{{ collection_name }}/external/autoware_auto_msgs/autoware_auto_perception_msgs",
+    dest: "{{ ros_source_dir }}/{{ collection_name }}/external/autoware_auto_msgs/autoware_auto_perception_msgs"
+  }
+  - {
+    src: "{{ repositories_download_dir }}/{{ collection_name }}/external/autoware_auto_msgs/autoware_auto_planning_msgs",
+    dest: "{{ ros_source_dir }}/{{ collection_name }}/external/autoware_auto_msgs/autoware_auto_planning_msgs"
+  }
+  - {
+    src: "{{ repositories_download_dir }}/{{ collection_name }}/external/autoware_auto_msgs/autoware_auto_system_msgs",
+    dest: "{{ ros_source_dir }}/{{ collection_name }}/external/autoware_auto_msgs/autoware_auto_system_msgs"
+  }
+  - {
+    src: "{{ repositories_download_dir }}/{{ collection_name }}/external/autoware_auto_msgs/autoware_auto_vehicle_msgs",
+    dest: "{{ ros_source_dir }}/{{ collection_name }}/external/autoware_auto_msgs/autoware_auto_vehicle_msgs"
+  }
+  # external/tier4_autoware_msgs
+  - {
+    src: "{{ repositories_download_dir }}/{{ collection_name }}/external/tier4_autoware_msgs/tier4_debug_msgs",
+    dest: "{{ ros_source_dir }}/{{ collection_name }}/external/tier4_autoware_msgs/tier4_debug_msgs"
+  }
+  - {
+    src: "{{ repositories_download_dir }}/{{ collection_name }}/external/tier4_autoware_msgs/tier4_external_api_msgs",
+    dest: "{{ ros_source_dir }}/{{ collection_name }}/external/tier4_autoware_msgs/tier4_external_api_msgs"
+  }
+  - {
+    src: "{{ repositories_download_dir }}/{{ collection_name }}/external/tier4_autoware_msgs/tier4_perception_msgs",
+    dest: "{{ ros_source_dir }}/{{ collection_name }}/external/tier4_autoware_msgs/tier4_perception_msgs"
+  }
+  # external
+  - {
+    src: "{{ repositories_download_dir }}/{{ collection_name }}/external/muSSP",
+    dest: "{{ ros_source_dir }}/{{ collection_name }}/external/muSSP"
+  }
+
+delete_list:
+  - "{{ repositories_download_dir }}"

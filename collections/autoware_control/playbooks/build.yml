@@ -1,0 +1,6 @@
+---
+- name: Build Autoware Control
+  hosts: localhost
+  connection: local
+  roles:
+    - role: bounverif.ros.colcon_build
