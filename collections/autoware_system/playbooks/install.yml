@@ -13,10 +13,10 @@
       - test
 
   roles:
-    # - role: bounverif.ros.ros2_install
-    # - role: bouncmpe.autoware_system.ros_requirements_install
-    # - role: bounverif.ros.cuda_toolkit_install
+    - role: bounverif.ros.ros2_install
+    - role: bouncmpe.autoware_system.ros_requirements_install
+    - role: bounverif.ros.cuda_toolkit_install
     - role: bounverif.ros.repositories
     - role: bounverif.ros.file_operations
     - role: bounverif.ros.rosdep_install
-    # - role: bounverif.ros.colcon_build
+    - role: bounverif.ros.colcon_build
