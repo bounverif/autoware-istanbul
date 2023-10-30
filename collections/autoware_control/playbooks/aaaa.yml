@@ -15,5 +15,5 @@
   roles:
     - role: bounverif.ros.repositories
     - role: bounverif.ros.file_operations
-    - role: bounverif.ros.rosdep_install
+    # - role: bounverif.ros.rosdep_install
     - role: bounverif.ros.colcon_build
