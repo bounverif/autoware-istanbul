@@ -153,8 +153,8 @@ copy_list:
   }
   # autoware_msgs
   - {
-    src: "{{ repositories_download_dir }}/{{ collection_name }}/autoware_msgs/autoware_planning_msgs/",
-    dest: "{{ ros_source_dir }}/{{ collection_name }}/autoware_msgs/autoware_planning_msgs/"
+    src: "{{ repositories_download_dir }}/{{ collection_name }}/autoware_msgs/autoware_common_msgs/",
+    dest: "{{ ros_source_dir }}/{{ collection_name }}/autoware_msgs/autoware_common_msgs/"
   }
   - {
     src: "{{ repositories_download_dir }}/{{ collection_name }}/autoware_msgs/autoware_planning_msgs/",

@@ -16,6 +16,8 @@ collections:
     type: dir
   - source: ./collections/autoware_planning
     type: dir
+  - source: ./collections/autoware_sensing
+    type: dir
   - source: ./collections/autoware_system
     type: dir
   - source: ./collections/autoware_vehicle

@@ -1,7 +1,7 @@
 # General Vars
 ros_workspace: /tmp/autoware-istanbul/ros/autoware_planning
 ros_source_dir:  "{{ ros_workspace }}/src"
-ros_build_dir: "{{ ros_build_dir }}/build"
+ros_build_dir: "{{ ros_workspace }}/build"
 ros_install_dir: "/opt/bouncmpe/{{ ros_distro }}"
 
 # Requirement role vars
@@ -123,6 +123,11 @@ copy_list:
     src: "{{ repositories_download_dir }}/{{ collection_name }}/common/tier4_autoware_utils/",
     dest: "{{ ros_source_dir }}/{{ collection_name }}/common/tier4_autoware_utils/"
   }
+  # control
+  - {
+    src: "{{ repositories_download_dir }}/{{ collection_name }}/control/lane_departure_checker/",
+    dest: "{{ ros_source_dir }}/{{ collection_name }}/control/lane_departure_checker/"
+  }  
   # map
   - {
     src: "{{ repositories_download_dir }}/{{ collection_name }}/map/map_loader/",
