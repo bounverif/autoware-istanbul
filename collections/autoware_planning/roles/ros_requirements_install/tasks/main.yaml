@@ -1,0 +1,61 @@
+- name: Get dash-case name of rmw_implementation
+  ansible.builtin.shell: bash -c 'sed -e "s/_/-/g" <<< $(echo {{ rmw_implementation }})'
+  register: rmw_implementation__dash_case_rmw_implementation
+  changed_when: false
+
+- name: Install pip Packages
+  ansible.builtin.pip:
+    name: "{{ item.name }}"
+    state: "{{ item.state | default(omit) }}"
+    version: "{{ item.version | default(omit) }}"
+    executable: pip3
+  loop: "{{ pip_packages }}"
+  changed_when: true
+
+- name: Install apt Packages
+  become: true
+  ansible.builtin.apt:
+    name: "{{ item.name }}"
+    state: "{{ item.state | default(omit) }}"
+    update_cache: true
+  loop: "{{ apt_packages }}"
+  changed_when: true
+
+- name: Install egm2008-1
+  become: true
+  ansible.builtin.command:
+    cmd: geographiclib-get-geoids egm2008-1
+    creates: /usr/share/GeographicLib/geoids/egm2008-1.pgm
+  changed_when: true
+
+- name: Add RMW_IMPLEMENTATION to .bashrc
+  ansible.builtin.lineinfile:
+    dest: ~/.bashrc
+    line: export RMW_IMPLEMENTATION={{ rmw_implementation }}
+    state: present
+    create: true
+    mode: '644'
+  changed_when: true
+
+- name: Save result of 'lsb_release -sc'
+  ansible.builtin.command: lsb_release -sc
+  register: pacmod__lsb_release
+  changed_when: false
+
+- name: Add AutonomouStuff apt repository to source list
+  become: true
+  ansible.builtin.apt_repository:
+    repo: deb [trusted=yes] https://s3.amazonaws.com/autonomoustuff-repo/ {{ pacmod__lsb_release.stdout }} main
+    filename: autonomoustuff-public
+    state: present
+    update_cache: true
+
+- name: Add AutonomouStuff rosdep yaml
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/ros/rosdep/sources.list.d/40-autonomoustuff-public-{{ ros_distro }}.list
+    line: yaml https://s3.amazonaws.com/autonomoustuff-repo/autonomoustuff-public-{{ ros_distro }}.yaml
+    state: present
+    create: true
+    mode: '644'
+  changed_when: true

@@ -1,11 +1,13 @@
 # General Vars
-ros_workspace: "{{ autoware_universe_workspace }}"
-ros_source_dir: "{{ autoware_universe_source_dir }}"
-ros_build_dir: "{{ autoware_universe_build_dir }}"
-ros_install_dir: "{{ autoware_universe_install_dir }}"
+ros_workspace: /tmp/autoware-istanbul/ros/autoware_universe
+ros_source_dir:  "{{ ros_workspace }}/src"
+ros_build_dir: "{{ ros_source_dir }}/build"
+ros_install_dir: "/opt/bouncmpe/{{ ros_distro }}"
 
 # Requirement role vars
 ros_distro: humble
+ros_distro_type: desktop
+collection_name: autoware_universe
 rmw_implementation: rmw_cyclonedds_cpp
 base_image: ubuntu:22.04
 cuda_base_image: ubuntu:22.04
@@ -18,89 +20,83 @@ clang_format_version: 16.0.0
 # Rosdep role
 rosdep_install_init: true
 
-# repositories role vars
-
-# repositories_source_dir: "/tmp/repos"
-# repositories_files:
-#   - a.repos
-#   - c.repos
-repositories_download_dir: "{{ autoware_universe_source_dir }}"
+repositories_download_dir: "{{ ros_source_dir }}"
 
 repositories:
   - {
     url: https://github.com/autowarefoundation/autoware.universe.git,
-    dest: "{{ repositories_download_dir }}/autoware_universe/",
+    dest: "{{ repositories_download_dir }}/{{ collection_name }}/",
     version: main
   }
   # Core
   - {
     url: https://github.com/autowarefoundation/autoware_msgs.git,
-    dest: "{{ repositories_download_dir }}/autoware_universe/autoware_msgs",
+    dest: "{{ repositories_download_dir }}/{{ collection_name }}/autoware_msgs",
     version: main
   }
   - {
     url: https://github.com/autowarefoundation/autoware_adapi_msgs.git,
-    dest: "{{ repositories_download_dir }}/autoware_universe/autoware_adapi_msgs",
+    dest: "{{ repositories_download_dir }}/{{ collection_name }}/autoware_adapi_msgs",
     version: main
   }
   - {
     url: https://github.com/autowarefoundation/autoware_common.git,
-    dest: "{{ repositories_download_dir }}/autoware_universe/autoware_common",
+    dest: "{{ repositories_download_dir }}/{{ collection_name }}/autoware_common",
     version: main
   }
   - {
     url: https://github.com/autowarefoundation/autoware.core.git,
-    dest: "{{ repositories_download_dir }}/autoware_universe/autoware.core",
+    dest: "{{ repositories_download_dir }}/{{ collection_name }}/autoware.core",
     version: main
   }
   - {
     url: https://github.com/tier4/autoware_auto_msgs.git,
-    dest: "{{ repositories_download_dir }}/autoware_universe/external/autoware_auto_msgs",
+    dest: "{{ repositories_download_dir }}/{{ collection_name }}/external/autoware_auto_msgs",
     version: tier4/main
   }
   # Universe
   - {
     url: https://github.com/tier4/tier4_ad_api_adaptor.git,
-    dest: "{{ repositories_download_dir }}/autoware_universe/external/tier4_ad_api_adaptor",
+    dest: "{{ repositories_download_dir }}/{{ collection_name }}/external/tier4_ad_api_adaptor",
     version: tier4/universe
   }
   - {
     url: https://github.com/tier4/tier4_autoware_msgs.git,
-    dest: "{{ repositories_download_dir }}/autoware_universe/external/tier4_autoware_msgs",
+    dest: "{{ repositories_download_dir }}/{{ collection_name }}/external/tier4_autoware_msgs",
     version: tier4/universe
   }
   - {
     url: https://github.com/MORAI-Autonomous/MORAI-ROS2_morai_msgs.git,
-    dest: "{{ repositories_download_dir }}/autoware_universe/external/morai_msgs",
+    dest: "{{ repositories_download_dir }}/{{ collection_name }}/external/morai_msgs",
     version: main
   }
   - {
     url: https://github.com/tier4/muSSP.git,
-    dest: "{{ repositories_download_dir }}/autoware_universe/external/muSSP",
+    dest: "{{ repositories_download_dir }}/{{ collection_name }}/external/muSSP",
     version: tier4/main
   }
   - {
     url: https://github.com/tier4/ndt_omp.git,
-    dest: "{{ repositories_download_dir }}/autoware_universe/external/ndt_omp",
+    dest: "{{ repositories_download_dir }}/{{ collection_name }}/external/ndt_omp",
     version: tier4/main
   }
   - {
     url: https://github.com/tier4/pointcloud_to_laserscan.git,
-    dest: "{{ repositories_download_dir }}/autoware_universe/external/pointcloud_to_laserscan",
+    dest: "{{ repositories_download_dir }}/{{ collection_name }}/external/pointcloud_to_laserscan",
     version: tier4/main
   }
   - {
     url: https://github.com/MapIV/eagleye.git,
-    dest: "{{ repositories_download_dir }}/autoware_universe/external/eagleye",
+    dest: "{{ repositories_download_dir }}/{{ collection_name }}/external/eagleye",
     version: autoware-main
   }
   - {
     url: https://github.com/MapIV/rtklib_ros_bridge.git,
-    dest: "{{ repositories_download_dir }}/autoware_universe/external/rtklib_ros_bridge",
+    dest: "{{ repositories_download_dir }}/{{ collection_name }}/external/rtklib_ros_bridge",
     version: ros2-v0.1.0
   }
   - {
     url: https://github.com/MapIV/llh_converter.git,
-    dest: "{{ repositories_download_dir }}/autoware_universe/external/llh_converter",
+    dest: "{{ repositories_download_dir }}/{{ collection_name }}/external/llh_converter",
     version: ros2
   }
