@@ -42,12 +42,9 @@ RUN wget ${CUDA_KEYRING_FILEPATH} && dpkg -i ${CUDA_KEYRING_PACKAGE} && rm ${CUD
 
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install \
-      cuda-minimal-build-12-2 \
-      libcublas-dev-12-2 \
-      libcurand-dev-12-2 \
-      # cuda-libraries-dev-12-2 \
-      # cuda-command-line-tools-12-2 \
-      # libnccl-dev \
+      cuda-minimal-build-12-3 \
+      libcublas-dev-12-3 \
+      libcurand-dev-12-3 \
       libnvinfer-dev \
       libnvinfer-plugin-dev \
       libnvparsers-dev \
