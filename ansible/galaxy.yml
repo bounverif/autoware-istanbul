@@ -1,7 +1,7 @@
-namespace: bouncmpe
+namespace: bounverif
 name: autoware
 description: Ansible scripts for Autoware Istanbul CoE
-repository: github.com/boundrivesim/autoware-istanbul
+repository: github.com/bounverif/autoware-istanbul
 version: 0.3.0
 readme: README.md
 authors:

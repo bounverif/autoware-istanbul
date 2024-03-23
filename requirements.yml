@@ -3,10 +3,13 @@
 # See: https://docs.ansible.com/ansible/latest/galaxy/user_guide.html
 # Use: ansible-galaxy install -r requirements.yml --force
 
+roles:
+  - name: bounverif.cuda_install
+    src: https://github.com/bounverif/ansible-role-cuda-install
+    version: main
+
 collections:
   - source: ./ansible
     type: dir
   - source: ./collections/autoware_universe
-    type: dir
-  - source: ../ansible-collection-ros
     type: dir
