@@ -42,13 +42,16 @@ RUN wget ${CUDA_KEYRING_FILEPATH} && dpkg -i ${CUDA_KEYRING_PACKAGE} && rm ${CUD
 
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install \
-      cuda-minimal-build-12-3 \
-      libcublas-dev-12-3 \
-      libcurand-dev-12-3 \
-      libnvinfer-dev \
-      libnvinfer-plugin-dev \
-      libnvparsers-dev \
-      libnvonnxparsers-dev \
+        cuda-nvcc-12-4 \
+        libcublas-dev-12-4 \
+        libcurand-dev-12-4 \
+        libcusolver-dev-12-4 \
+        libnvinfer-dev=8.* \
+        libnvinfer-headers-dev=8.* \
+        libnvinfer-plugin-dev=8.* \
+        libnvinfer-headers-plugin-dev=8.* \
+        libnvparsers-dev=8.* \
+        libnvonnxparsers-dev=8.* \
     && find . -name 'libcu*.a' -delete \
     && find . -name 'libnv*.a' -delete \ 
     && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* 
