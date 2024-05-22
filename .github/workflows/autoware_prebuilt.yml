@@ -11,7 +11,6 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: bounverif/autoware-prebuilt
-  VERSION: latest
 
 jobs:
   build-and-push-image:
@@ -21,6 +20,9 @@ jobs:
       packages: write
 
     steps:
+      - name: Set release version
+        run: |
+          echo "AUTOWARE_VERSION=$(date +%+4Y%m%d)" >> ${GITHUB_ENV}
       - name: Checkout repository
         uses: actions/checkout@v3
       - name: Set up Docker Buildx
@@ -36,8 +38,6 @@ jobs:
         with:
           context: containers/autoware-prebuilt
           build-args: |
-            --no-cache
-            VERSION=${{ env.VERSION }}
-  
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+            AUTOWARE_VERSION=${{ env.AUTOWARE_VERSION }}
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
           push: true
