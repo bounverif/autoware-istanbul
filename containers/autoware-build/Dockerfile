@@ -77,6 +77,8 @@ ENV NVIDIA_DRIVER_CAPABILITIES=compute,utility
 ENV PATH="/usr/local/cuda/bin:$PATH"
 ENV LD_LIBRARY_PATH="/usr/local/cuda/lib64:$LD_LIBRARY_PATH"
 ENV CMAKE_GENERATOR=Ninja
-ENV CCACHE_DIR=/ccache
+ENV CCACHE_DIR=/var/cache/ccache
+ENV CC=/usr/lib/ccache/gcc
+ENV CXX=/usr/lib/ccache/g++
 
 ## BUILD ENVIRONMENT -- END
